@@ -1,0 +1,11 @@
+(
+echo root = true
+echo.
+echo [*]
+echo charset = utf-8
+echo end_of_line = lf
+echo insert_final_newline = true
+echo indent_style = space
+echo indent_size = 4
+echo trim_trailing_whitespace = true
+) > ".editorconfig"

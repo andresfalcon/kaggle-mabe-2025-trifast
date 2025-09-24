@@ -1,0 +1,33 @@
+# ======================================
+# Configuración Kaggle de MABe 2025
+# ======================================
+
+[paths]
+# En Kaggle los datos aparecen en /kaggle/input/mabe-mouse-behavior-detection/
+data_root = "/kaggle/input/mabe-mouse-behavior-detection"
+
+# Archivos CSV principales
+train_csv = "/kaggle/input/mabe-mouse-behavior-detection/train.csv"
+test_csv = "/kaggle/input/mabe-mouse-behavior-detection/test.csv"
+
+# Carpetas de tracking y anotaciones
+train_tracking = "/kaggle/input/mabe-mouse-behavior-detection/train_tracking"
+test_tracking = "/kaggle/input/mabe-mouse-behavior-detection/test_tracking"
+train_annotation = "/kaggle/input/mabe-mouse-behavior-detection/train_annotation"
+
+[training]
+# En Kaggle guardamos salidas en /kaggle/working/
+work_dir = "/kaggle/working/work"
+checkpoints_dir = "/kaggle/working/checkpoints"
+outputs_dir = "/kaggle/working/outputs"
+
+# Parámetros básicos de entrenamiento
+batch_size = 16
+learning_rate = 0.001
+max_epochs = 2   # para probar rápido; después subimos
+
+[system]
+# Kaggle da GPU gratis, así que lo dejamos en cuda
+device = "cuda"
+num_workers = 2
+seed = 42

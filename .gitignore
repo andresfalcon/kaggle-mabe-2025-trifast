@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.log
+
+# Virtual env
+.venv/
+.env/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Kaggle & data
+C:/data/mabe/
+kaggle/input/
+data/
+outputs/
+checkpoints/
+work/
+
+# IDEs
+.vscode/
+.idea/

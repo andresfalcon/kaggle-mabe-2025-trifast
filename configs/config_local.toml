@@ -1,0 +1,48 @@
+# ================================
+# Configuración local de MABe 2025
+# ================================
+
+[paths]
+# Carpeta raíz donde están los datos grandes
+data_root = "C:/mabe/data/mabe"
+
+# Archivos CSV principales
+train_csv = "C:/mabe/data/mabe/train.csv"
+test_csv = "C:/mabe/data/mabe/test.csv"
+
+# Carpetas de tracking y anotaciones
+tracking_dir = "C:/mabe/data/mabe/train_tracking"
+ann_dir = "C:/mabe/data/mabe/train_annotation"
+
+
+train_tracking = "C:/mabe/data/mabe/train_tracking"
+test_tracking  = "C:/mabe/data/mabe/test_tracking"
+train_annotation = "C:/mabe/data/mabe/train_annotation"
+
+[training]
+work_dir = "H:/My Drive/Academico/Kaggle/kaggle-mabe-2025-trifast/work"
+checkpoints_dir = "H:/My Drive/Academico/Kaggle/kaggle-mabe-2025-trifast/checkpoints"
+outputs_dir = "H:/My Drive/Academico/Kaggle/kaggle-mabe-2025-trifast/outputs"
+batch_size = 16
+learning_rate = 0.001
+max_epochs = 2
+
+[system]
+#device = "cuda"   # usar "cpu" si no hay GPU disponible
+device = "cpu"
+num_workers = 2
+seed = 42
+
+
+[model]
+hidden_dim = 128
+num_layers = 4
+dropout = 0.2
+
+[logging]
+log_dir = "logs"
+
+[windows]
+short = 32    # frames (~1s a 30fps)
+mid   = 75    # frames (~2.5s)
+long  = 225   # frames (~7.5s)
