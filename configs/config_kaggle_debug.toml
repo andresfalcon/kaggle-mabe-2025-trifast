@@ -2,7 +2,7 @@
 train_csv = "/kaggle/working/mabe/train_debug.csv"
 test_csv = "/kaggle/input/MABe-mouse-behavior-detection/test.csv"
 ann_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_annotation"
-track_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_tracking"
+tracking_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_tracking"
 sample_submission = "/kaggle/input/MABe-mouse-behavior-detection/sample_submission.csv"
 
 [output]
@@ -16,7 +16,7 @@ device = "cuda"
 
 [training]
 batch_size = 4
-num_workers = 2
+num_workers = 0
 max_epochs = 1
 
 [windows]
@@ -26,7 +26,7 @@ long = 225
 
 [model]
 name = "trifast_pose"
-hidden_dim = 128
+hidden_dim = 256
 
 [logging]
 log_level = "INFO"

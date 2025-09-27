@@ -1,15 +1,21 @@
 import tomllib
 from pathlib import Path
 
-
 class Cfg(dict):
     """
     Configuración cargada desde un TOML.
-    Se comporta como un diccionario, pero mantiene acceso por atributos.
+    Se comporta como un diccionario, pero mantiene acceso por atributos,
+    incluso de manera recursiva.
     """
 
     def __init__(self, data: dict):
-        super().__init__(data)
+        super().__init__()
+        for k, v in data.items():
+            if isinstance(v, dict):
+                v = Cfg(v)   # conversión recursiva
+            elif isinstance(v, list):
+                v = [Cfg(x) if isinstance(x, dict) else x for x in v]
+            self[k] = v
 
     def __getattr__(self, key):
         try:
@@ -19,7 +25,7 @@ class Cfg(dict):
 
     def to_dict(self) -> dict:
         """Convierte el objeto en un dict normal."""
-        return dict(self)
+        return {k: (v.to_dict() if isinstance(v, Cfg) else v) for k, v in self.items()}
 
 
 def load_config(path: str) -> Cfg:

@@ -2,7 +2,7 @@
 train_csv = "/kaggle/input/MABe-mouse-behavior-detection/train.csv"
 test_csv = "/kaggle/input/MABe-mouse-behavior-detection/test.csv"
 ann_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_annotation"
-track_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_tracking"
+tracking_dir = "/kaggle/input/MABe-mouse-behavior-detection/train_tracking"
 sample_submission = "/kaggle/input/MABe-mouse-behavior-detection/sample_submission.csv"
 
 [output]
