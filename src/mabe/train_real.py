@@ -1,5 +1,6 @@
+%%writefile /kaggle/working/mabe/src/mabe/train_real.py
 from __future__ import annotations
-import argparse, sys, torch
+import argparse, torch
 from torch import nn, optim
 from torch.utils.data import DataLoader
 
@@ -19,25 +20,21 @@ def parse_args():
 def main():
     args = parse_args()
     cfg_path = args.config
-    cfg = load_config(cfg_path)
+    cfg = load_config(cfg_path)  # 👈 se mantiene como objeto Cfg
 
-    # Aseguramos dict subscripteable
-    if hasattr(cfg, "to_dict"):
-        cfg = cfg.to_dict()
+    set_seed(cfg.system.seed)
+    device = cfg.system.device if torch.cuda.is_available() else "cpu"
 
-    set_seed(cfg["system"]["seed"])
-    device = cfg["system"].get("device", "cuda" if torch.cuda.is_available() else "cpu")
-
-    print(f"[INFO] Seed fijada en {cfg['system']['seed']}")
-    logger = get_logger("train_real", level=cfg["logging"]["log_level"])
+    print(f"[INFO] Seed fijada en {cfg.system.seed}")
+    logger = get_logger("train_real", level=cfg.logging.log_level)
 
     # === Dataset & Loader ===
     train_ds = TriScalePoseDataset(cfg, split="train")
     train_loader = DataLoader(
         train_ds,
-        batch_size=cfg["training"]["batch_size"],
+        batch_size=cfg.training.batch_size,
         shuffle=True,
-        num_workers=cfg["training"]["num_workers"],
+        num_workers=cfg.training.num_workers,
     )
 
     input_dim = train_ds[0]["short"].shape[-1]   # última dimensión de features
@@ -49,7 +46,7 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
     # === Entrenamiento ===
-    max_epochs = cfg["training"]["max_epochs"]
+    max_epochs = cfg.training.max_epochs
     logger.info(f"Entrenamiento comenzando por {max_epochs} epochs")
 
     for epoch in range(max_epochs):

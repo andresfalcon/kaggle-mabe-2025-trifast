@@ -1,8 +1,12 @@
-import logging, sys
-def get_logger(name="mabe"):
+import logging
+
+def get_logger(name: str, level: str = "INFO"):
     logger = logging.getLogger(name)
-    if logger.handlers: return logger
-    logger.setLevel(logging.INFO)
-    h = logging.StreamHandler(sys.stdout)
-    h.setFormatter(logging.Formatter("[%(asctime)s] %(levelname)s - %(message)s"))
-    logger.addHandler(h); return logger
+    logger.setLevel(level)
+    if not logger.handlers:
+        ch = logging.StreamHandler()
+        ch.setLevel(level)
+        formatter = logging.Formatter('[%(asctime)s][%(name)s][%(levelname)s] %(message)s')
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
+    return logger
